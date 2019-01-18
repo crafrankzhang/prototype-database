@@ -1,3 +1,15 @@
+s
+This is a prototype database project using c/c++ to implement the whole database function.
+The main function:
+Implemented a relational database management system with c/c++
+Implemented a page file manager(PFM),record-based file manager(RBFM),index manager(IM) with B+ tree
+Orchestrated RBFM and IM to construct relation manager(RM) in support of tuple level operations
+Implemented a Query Engine to answer SQL queries with plan tree made up of iterator-based operators
+
+
+
+
+
 - Modify the "CODEROOT" variable in makefile.inc to point to the root of your codebase. Usually, this is not necessary.
 
 - Copy your own implementation of rbf, ix, and rm to folder, "rbf", "ix", and "rm", respectively.
@@ -30,3 +42,4 @@
    The program should work. But you need to implement the extension of RM and QE to run this program properly. Note that examples in the cli directory are provided for your convenience. These examples are not the public test cases.
 
 - By default you should not change those classes defined in rm/rm.h and qe/qe.h. If you think some changes are really necessary, please contact us first.
+

@@ -1,0 +1,71 @@
+1. Basic information
+Team number (e.g., 01) : 
+#2 Student ID :  ***************
+#2 Student Name :  Xinran Zhang
+OS (bit) : Ubuntu 14.04 64-bit
+gcc version : 4.3.1
+
+
+2. Meta-data page in an index file
+
+- Show your meta-data page of an index design if you have any. 
+1st we have hidden page , it stores pagenumber and rootnum, every time we will read it before after operations,and change it if it changed 
+rootnum help us find root
+
+ 
+3. Index Entry Format
+
+- Show your index entry design (structure). 
+include key and rid, for varchar it has 4 bytes for length and length for each char, float and int both 4 bytes, rid contain pagenum and slotnum after key
+ 
+
+4. Page Format
+- Show your internal-page (non-leaf node) design.
+
+(a) Root and Internal nodes:
+
+type show if it is leaf or internal=0, other same as rbmf, point points to next page, both 4 bytes 
+
+|pointer|key|pointer|key|pointer|…
+
+|directory|freespace|slotnum|type
+
+
+
+- Show your leaf-page (leaf node) design.
+
+(b) Leaf nodes:
+There are also two parts in these pages. A pointer to sibling and keys are in the front of the page and a directory with flag, free space and number of slots in the end of the page.
+
+|sibling|key+rid|key+rid|…
+sibling  is 4 bytes int,point to next leaf page
+
+End: |offset|length|offset|length|freespace|slotnum|type
+ 
+it same as internal page, only leaf=1
+
+5. Implementation Detail
+- Have you added your own source file (.cc or .h)?
+
+No
+
+- Have you implemented non-lazy deletion? Choose Yes or No: 
+No
+
+- Have you implemented duplicated key handling that can span multiple pages? Choose Yes or No: 
+Yes
+  If yes, please explain briefly how you have implemented this feature.
+
+If there are a lot of <key,rid> entries with same key ,we will put these entries in another page. The sibling pointer pointing to the new page. 
+If still not enough space, then add more pages.
+
+- Other implementation details:
+
+
+When inserting new key, if the page is full, first split the page (add a new page) then put the new one into the page.
+some times have to change internal page just as book said
+scan is same as rbmf , first intialize and then use getnext to getnext, if we delete, we need to compare if before one not changed, if changed it means delte happen we need to slotnum--
+when delete, we direcly delete the record and directory
+
+6. Other (optional)
+- Freely use this section to tell us about things that are related to the project 3, but not related to the other sections (optional)

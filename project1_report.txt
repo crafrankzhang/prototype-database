@@ -1,0 +1,49 @@
+1. Basic information
+Student ID : ****************
+Student Name : xinran zhang
+OS (bit) :Mac OS(64)
+gcc version :4.2.1
+
+
+2. Internal Record Format
+- Show your record format design and describe how your design satisfies O(1) field access. If not, just mention that you haven't implemented this feature.
+- Describe how you store a VarChar field.
+
+Record has three part the first part is RID and the second part will include filed position which will be used to record the data's offset int he record and then the third part store the data.
+
+Use two fields to store the data the first field store the length and the next field store the data itself. 
+
+
+
+
+
+
+3. Page Format
+- Show your page format design
+
+Every page has three parts the first part is used to store new record and the second part has two int space in the last of a page to restore the record number and available line number and the third part is used to store the specific record  length and position.
+
+
+
+
+4. Implementation Detail
+- Other implementation details goes here.
+
+For the insertRecord function the function main has three part the part is to transfer the data format through moving bit to decide how many null bits and store describe fields and then store the specific record data in a new page and then calculate the specific position to to store the record .
+The second part is to find and store the record which has been transfer to new format first the program will decide whether there is a page if there is not the program will append a new page and then store the record and update the record information at the last of the page and if there already are some pages the program will find whether there are available position for the new record. The method is use the current page 's available and the record's length to calculate whether the page can store the record if the page can then the record will be stored in the page and then program will update the the record information in the 
+Page.if there is no page can store the record and then the program will append an another page.
+
+For the read page the program just use the rid.page and rid.slotNum to find the record and then read the record using the format.
+
+
+
+ 
+
+
+
+
+
+
+5. Other (optional)
+- Freely use this section to tell us about things that are related to the project 1, but not related to the other sections (optional)
+
